@@ -1,0 +1,76 @@
+<view class="cart">
+  <view class="address">
+    <view wx:if="{{address.errMsg === 'chooseAddress:ok'}}" class="address_info">
+      <view class="top">
+        <view>收货人:{{address.userName}}</view>
+        <view>{{address.telNumber}}</view>
+      </view>
+      <view>{{address.provinceName+address.cityName+address.countyName+address.detailInfo}}</view>
+    
+    </view>
+    <view wx:else class="address_btn">
+      <button type="primary" plain bindtap="handleGetAddress">添加地址</button>
+    </view>
+  </view>
+  <view class="cart_list">
+    <text class="title">购物车</text>
+    <view class="list">
+      <block wx:if="{{cart.length !== 0}}">
+        <view
+          class="item"
+          wx:for="{{cart}}"
+          wx:key="goods_id"
+          wx:for-index="index"
+          wx:for-item="item"
+        >
+          <view class="item_checkbox">
+            <checkbox checked="{{item.checked}}" bindtap="handleChangeChecked" data-id="{{item.goods_id}}"></checkbox>
+          </view>
+          <view class="item_image">
+            <image mode="widthFix"
+                   src="{{item.goods_small_logo}}">
+            </image>
+          </view>
+          <view class="item_info">
+            <view class="info_title">{{item.goods_name}}</view>
+            <view class="bottom">
+              <view class="price">￥{{item.goods_price}}</view>
+              <view class="number_warp">
+                <view class="num_edit {{item.num===0?'num_break':''}}" bindtap="handleChangeNum" data-type="reduce"
+                      data-id="{{item.goods_id}}">-
+                </view>
+                <view class="number">{{item.num}}</view>
+                <view class="num_edit" bindtap="handleChangeNum" data-type="add" data-id="{{item.goods_id}}">+</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+      <block wx:else >
+        <image mode="widthFix"
+               src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3334466282,826560232&fm=26&gp=0.jpg"></image>
+        <text class="cart_empty">购物车空空如也</text>
+      
+      </block>
+    
+    
+    </view>
+  </view>
+  <view class="tab">
+    <view class="tab_check">
+      <checkbox checked="{{allChecked}}" bindtap="handleChangeAllChecked"></checkbox>全选
+    </view>
+    <view class="right">
+      <view class="tab_cart_info">
+        合计:
+        <view class="tab_price">
+          <view class="tab_price_num">￥{{allPrice}}</view>
+          <view class="tab_price_info">包含运费</view>
+        </view>
+      </view>
+      <view class="tab_pay" bindtap="handlePay">
+        结算({{totalNum}})
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,28 @@
+<search></search>
+<tabs tabNames="{{tabNames}}" bindtabsItemChange="tabsItemChange">
+<!--
+两者的区别是，<view> 是一个组件，会在页面上做渲染；<block>不是一个组件，它仅仅是一个包装元素，只接受控制属性，不会在页面中做任何渲染。下面是两个<block>使用的例子：
+-->
+  <block wx:if="{{tabNames[0].isActive}}">
+    <navigator
+      class="goods_list"
+      wx:for="{{goodsList}}"
+      wx:key="goods_id"
+      wx:for-item="item"
+      wx:for-index="index"
+      url="/pages/goods_detail/index?goods_id={{item.goods_id}}"
+    >
+      <view class="goods_item">
+        <view class="image">
+          <image mode="widthFix" src="{{item.goods_small_logo?item.goods_small_logo:'https://ww1.sinaimg.cn/large/007rAy9hgy1g24by9t530j30i20i2glm.jpg'}}"></image>
+        </view>
+        <view class="info">
+          <view class="title">{{item.goods_name}}</view>
+          <view class="price">￥{{item.goods_price}}</view>
+        </view>
+      </view>
+    </navigator>
+  </block>
+  <block wx:if="{{tabNames[1].isActive}}">1</block>
+  <block wx:if="{{tabNames[2].isActive}}">2</block>
+</tabs>

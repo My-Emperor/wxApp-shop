@@ -1,0 +1,16 @@
+/* components/search/search.wxss */
+.search {
+  padding: 10rpx;
+  height: 90rpx;
+  background-color: var(--themeColor);
+}
+.search navigator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: #fff;
+  color: #666;
+  border-radius: 15rpx;
+}
+/*# sourceMappingURL=search.wxss.map */
